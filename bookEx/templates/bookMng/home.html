@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{#{% block sidenav %}#}
+{#  {% for item in item_list %}#}
+{#
+<li>#}
+    {# <a href="{{ item.link }}"> {{ item.item }} </a>#}
+    {#
+</li>#}
+{#  {% endfor %}#}
+{#{% endblock sidenav %}#}
+
+{# Using Jumbotron from https://getbootstrap.com/docs/4.0/components/jumbotron/ #}
+{% block content %}
+<main role="main">
+    <div class="jumbotron">
+        <div class="container my-5">
+            <h1 class="display-4" align="center">Welcome Book Exchange System</h1>
+            <p align="center">Welcome to the home page of our book exchange project! Here you have the access to post a
+                book that you have for sale or even display the books that other members has posted. You can also
+                display the books that currently belongs to you. You can use the menu at the top to navigate through the
+                pages or you can select them here from the home page. </p>
+        </div>
+    </div>
+    {# Using container fluid to fill up width from https://getbootstrap.com/docs/3.3/css/ #}
+    <div class="container-fluid mb-auto">
+        {# Using Cards from https://getbootstrap.com/docs/4.5/components/card/ #}
+        <div class ="card-deck mt-auto mb-5 mx-auto py-4">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'postbook.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">Post Book</h3>
+                    <p class="card-text">Here you can post any book you'd like. </p>
+                    <a href="{% url 'postbook' %}" class="btn"
+                       style="background-color: #6A5ACD; color: #FFFFFF;">Post Book</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="{% static 'displaybooks.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">Display Books</h3>
+                    <p class="card-text">Here you can view the books that are in the database. </p>
+                    <a href="{% url 'displaybooks' %}" class="btn btn-primary"
+                       style="background-color: #6A5ACD; color: #FFFFFF;">Display Books</a>
+                </div>
+            </div>
+             <div class="card">
+                <img class="card-img-top" src="{% static 'mybooks.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">My Books</h3>
+                    <p class="card-text">Here you can view the books that belong to the user. </p>
+                    <a href="{% url 'mybooks' %}" class="btn btn-primary"
+                       style="background-color: #6A5ACD; color: #FFFFFF;">My Books</a>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="{% static 'findbook.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">Find Books</h3>
+                    <p class="card-text">Here you can find books from other stores. </p>
+                    <a href="{% url 'findbook' %}" class="btn btn-primary"
+                       style="background-color: #6A5ACD; color: #FFFFFF;">Find Books</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{#<h1 align="center"> Welcome Book Exchange System </h1>#}
+{% endblock content %}

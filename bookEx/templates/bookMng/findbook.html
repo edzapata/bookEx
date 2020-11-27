@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Find Books
+{% endblock title %}
+
+{# Using same method as home.html but now displayin different stores that we can find books in #}
+{% block content %}
+<main role="main">
+    <div class="jumbotron">
+        <div class="container my-5">
+            <h1 class="display-4" align="center">Find Books</h1>
+            <p align="center">Here you can find books to any of the alternatives sites that you'd like to visit. </p>
+        </div>
+    </div>
+    {# Using container fluid to fill up width from https://getbootstrap.com/docs/3.3/css/ #}
+    <div class="container-fluid mb-auto">
+        {# Using Cards from https://getbootstrap.com/docs/4.5/components/card/ #}
+        {#<div class ="card-deck mt-auto mb-5 mx-auto py-4">#}
+            <div class="row card-deck mt-auto mb-5 mx-auto py-4" align="center">
+                <div class="col-sm-6">
+                    <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{% static 'amazon.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title">Amazon</h3>
+                            <p class="card-text">Here you can redirect to the Amazon homepage to find a book.</p>
+                            <a href="https://www.amazon.com/" class="btn"
+                               style="background-color: #6A5ACD; color: #FFFFFF;">Amazon</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                     <div class="card" style="width: 18rem;">
+                     <img class="card-img-top" src="{% static 'barnes&noble.jpg' %}" alt="Card image cap">
+                         <div class="card-body">
+                             <h3 class="card-title">Barnes&Noble</h3>
+                             <p class="card-text">Here you can redirect to the Barnes&Nobles homepage to find a book.</p>
+                             <a href="https://www.barnesandnoble.com/" class="btn btn-primary"
+                                style="background-color: #6A5ACD; color: #FFFFFF;">Barnes&Noble</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row card-deck mt-auto mb-5 mx-auto py-4" align="center">
+                <div class="col-sm-6">
+                    <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{% static 'BAM!.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h3 class="card-title">BAM!</h3>
+                            <p class="card-text">Here you can redirect to the Books-A-Million homepage to find a book.</p>
+                            <a href="https://www.booksamillion.com/" class="btn btn-primary"
+                               style="background-color: #6A5ACD; color: #FFFFFF;">Books-A-Million</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                     <div class="card" style="width: 18rem;">
+                     <img class="card-img-top" src="{% static 'wordery.jpg' %}" alt="Card image cap">
+                         <div class="card-body">
+                             <h3 class="card-title">Wordery</h3>
+                             <p class="card-text">Here you can redirect to the Wordery homepage to find a book.</p>
+                             <a href="https://wordery.com/" class="btn btn-primary"
+                                style="background-color: #6A5ACD; color: #FFFFFF;">Wordery</a>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        {#</div>#}
+    </div>
+</main>
+{% endblock content %}
