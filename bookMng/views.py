@@ -79,11 +79,16 @@ def displaybooks(request):
 @login_required(login_url=reverse_lazy('login'))
 def mybooks(request):
     books = Book.objects.filter(username=request.user)
+
+    myFilter = BookFilter(request.GET, queryset=books)
+    books = myFilter.qs
+
     return render(request,
                   'bookMng/mybooks.html',
                   {
                       'item_list': MainMenu.objects.all(),
-                      'books': books
+                      'books': books,
+                      'myFilter': myFilter
                   }
                   )
 
