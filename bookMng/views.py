@@ -128,6 +128,31 @@ def book_delete(request, book_id):
                   )
 
 
+@login_required(login_url=reverse_lazy('login'))
+def edit_info(request, book_id):
+    book = Book.objects.get(id=book_id)
+    book.pic_path = book.picture.url[14:]
+
+    if request.method == 'POST':
+        try:
+            book.username = request.user
+            if request.FILES.get('picture') is not None:
+                book.picture = request.FILES.get('picture')
+            book.price = request.POST['price']
+            book.name = request.POST['name']
+            book.web = request.POST['web']
+        except Exception:
+            pass
+        book.save()
+        return HttpResponseRedirect('/mybooks')
+    return render(request,
+                  'bookMng/edit_info.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      'book': book,
+                  })
+
+
 class Register(CreateView):
     template_name = 'registration/register.html'
     form_class = UserCreationForm

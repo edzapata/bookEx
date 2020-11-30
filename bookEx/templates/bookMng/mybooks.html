@@ -31,7 +31,7 @@
                 <th scope="col"> Publised Date</th>
                 <th scope="col">Posted By</th>
                 <th scope="col">Delete Book</th>
-
+                <th scope="col">Edit Info</th>
             </tr>
             </thead>
             {% for book in books %}
@@ -47,6 +47,9 @@
                     </td>
                     <td class="lead">
                         <a href="book_delete/{{ book.id }}">Delete Book</a>
+                    </td>
+                    <td>
+                        <a href="edit_info/{{ book.id }}">Edit Info</a>
                     </td>
                 </tr>
             {% endfor %}
