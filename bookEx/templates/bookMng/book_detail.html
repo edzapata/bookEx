@@ -2,35 +2,64 @@
 {% load static %}
 
 {% block title %}
-    Book Detail
+Book Detail
 {% endblock title %}
 
-{% block sidenav %}
-  {% for item in item_list %}
-    <li>
-          <a href="{{ item.link }}"> {{ item.item }} </a>
-    </li>
-  {% endfor %}
-{% endblock sidenav %}
+{#{% block sidenav %}#}
+{#{% for item in item_list %}#}
+{#<li>#}
+{#    <a href="{{ item.link }}"> {{ item.item }} </a>#}
+{#</li>#}
+{#{% endfor %}#}
+{#{% endblock sidenav %}#}
 
 
 {% block content %}
-<h1 align="center"> {{ book.name }} Page </h1>
-<table align="center" border="2" width="500">
+<div class="container-fluid">
+    <div class="container " align="center">
+        <div>
+            <h1 align="center" class="display-4 mx-auto my-auto px-5 py-8"> {{ book.name }} Page </h1>
+        </div>
+    </div>
+
+    <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
+        <thead class="thead-dark">
         <tr>
-            <td>
-                    {{book.name}}
-                </a>
-            </td>
-            <td>
-                {{ book.publishdate }}
-            </td>
-            <td>
-                {{ book.username }}
-            </td>
-            <td>
-                <img src="{% static book.pic_path %}" width="50" height="50">
-            </td>
+            <th scope="col"> Name</th>
+            <th scope="col"> Price</th>
+            <th scope="col"> Date</th>
+            <th scope="col"> Published By</th>
+            <th scope="col"> Image</th>
+
         </tr>
-</table>
+        </thead>
+        <tr>
+            <td class="lead">{{ book.name }}</td>
+            <td class="lead">{{ book.price }}</td>
+            <td class="lead">{{ book.publishdate }}</td>
+            <td class="lead">{{ book.username }}</td>
+            <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>
+        </tr>
+    </table>
+</div>
+
+
+{#<h1 align="center"> {{ book.name }} Page </h1>#}
+{#<table align="center" border="2" width="500">#}
+{#    <tr>#}
+{#        <td>#}
+{#            {{book.name}}#}
+{#            </a>#}
+{#        </td>#}
+{#        <td>#}
+{#            {{ book.publishdate }}#}
+{#        </td>#}
+{#        <td>#}
+{#            {{ book.username }}#}
+{#        </td>#}
+{#        <td>#}
+{#            <img src="{% static book.pic_path %}" width="50" height="50">#}
+{#        </td>#}
+{#    </tr>#}
+{#</table>#}
 {% endblock content %}

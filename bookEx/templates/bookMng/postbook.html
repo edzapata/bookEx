@@ -3,34 +3,82 @@
 
 
 {% block title %}
-    Post Book
+Post Book
 {% endblock title %}
 
-{% block sidenav %}
-  {% for item in item_list %}
-    <li>
-          <a href="{{ item.link }}"> {{ item.item }} </a>
-    </li>
-  {% endfor %}
-{% endblock sidenav %}
+{#{% block sidenav %}#}
+{#  {% for item in item_list %}#}
+{#
+<li>#}
+    {# <a href="{{ item.link }}"> {{ item.item }} </a>#}
+    {#
+</li>#}
+{#  {% endfor %}#}
+{#{% endblock sidenav %}#}
 
 {% block content %}
-<h1> Post Book </h1>
-{% if submitted %}
-    <p align="center">
-        Post Successfully
-    </p>
-{% else %}
-    <form action="" enctype="multipart/form-data" method="post" novalidate>
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="submit">
-                </td>
-            </tr>
-        </table>
-        {% csrf_token %}
-    </form>
-{% endif %}
+<div class="container">
+    <div class="container " align="center">
+        <div>
+            <h1 align="center" class="display-4 mx-auto my-auto px-5 py-8"> Post Book </h1>
+        </div>
+    </div>
+    <div class="container my-auto py-6">
+        {% if submitted %}
+        <div class="alert alert-success" role="alert">
+            Post Successful!
+        </div>
+        {% else %}
+        <div class="container ">
+            <form action="" enctype="multipart/form-data" method="post" novalidate>
+                <div class="form-group">
+                    <label class="lead">Book Name: </label>
+                    {{ form.name }}
+                </div>
+                <div class="form-group">
+                    <label class="lead">Web URL: </label>
+                    {{ form.web }}
+                </div>
+                <div class="form-group">
+                    <label class="lead">Book Price: </label>
+                    {{ form.price }}
+                </div>
+                <div class="mt-4">
+                    <div class="custom-file">
+                        <label class="lead custom-file-label" for="image-upload">Insert a picture... </label>
+                        {{ form.picture }}
+                        {#<input type="file" class="form-control-file" id="image-upload">#}
+                    </div>
+                </div>
+                {# {{ form.as_table }}#}
+                <div class="container" align="left">
+                    <input class="btn btn-lg btn-secondary my-4" style="background-color: #6A5ACD; color: #FFFFFF;"
+                           type="submit" value="Submit">
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{#<h1> Post Book </h1>#}
+{#{% if submitted %}#}
+{#<p align="center">#}
+{#    Post Successfully#}
+{#</p>#}
+{#{% else %}#}
+{#<form action="" enctype="multipart/form-data" method="post" novalidate>#}
+{#    <table>#}
+{#        {{ form.as_table }}#}
+{#        <tr>#}
+{#            <td colspan="2">#}
+{#                <input type="submit" value="submit">#}
+{#            </td>#}
+{#        </tr>#}
+{#    </table>#}
+{#    {% csrf_token %}#}
+{#</form>#}
+{#{% endif %}#}
 {% endblock content %}
