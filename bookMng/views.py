@@ -14,6 +14,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
 from .filters import BookFilter
+from .filters import MyBooksFilter
 
 # Create your views here.
 
@@ -80,7 +81,7 @@ def displaybooks(request):
 def mybooks(request):
     books = Book.objects.filter(username=request.user)
 
-    myFilter = BookFilter(request.GET, queryset=books)
+    myFilter = MyBooksFilter(request.GET, queryset=books)
     books = myFilter.qs
 
     return render(request,
