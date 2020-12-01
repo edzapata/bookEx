@@ -30,7 +30,6 @@ Book Detail
             <th scope="col"> Date</th>
             <th scope="col"> Published By</th>
             <th scope="col"> Image</th>
-
         </tr>
         </thead>
         <tr>
@@ -43,6 +42,11 @@ Book Detail
     </table>
 </div>
 
+{% if book.username != request.user %}
+    <div align="center">
+        <a href="/exchange/{{ book.id }}">Want to Exchange?</a>
+    </div>
+{% endif %}
 
 {#<h1 align="center"> {{ book.name }} Page </h1>#}
 {#<table align="center" border="2" width="500">#}

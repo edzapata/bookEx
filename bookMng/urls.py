@@ -11,5 +11,7 @@ urlpatterns = [
     path('mybooks', views.mybooks, name='mybooks'),
     path('findbook', views.findbook, name='findbook'),
     path('edit_info/<int:book_id>', views.edit_info, name='edit_info'),
+    path('exchange/<int:book_id>', views.exchange, name='exchange'),
+    path('exchange', views.exchange, name='exchange'),
 ]
 

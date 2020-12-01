@@ -37,35 +37,6 @@ Book Edit
             <input type="submit" value="Submit">
         </div>
     </div>
-
-<!--    <table class="table mx-auto my-4" id="my-books-table" align="center" border="2" width="800">-->
-<!--        <thead class="thead-dark text-center">-->
-<!--            <tr>-->
-<!--                <th scope="col">Image</th>-->
-<!--                <th scope="col">Book Title</th>-->
-<!--                <th scope="col">Website</th>-->
-<!--                <th scope="col">Price</th>-->
-<!--            </tr>-->
-<!--        </thead>-->
-<!--        <tr class="text-center ">-->
-<!--            <td>-->
-<!--                <img src="{% static book.pic_path %}" width="50" height="50">-->
-<!--                <input type="file" id="img" name="picture" accept="image/*">-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <input type="text" name="name" value="{{ book.name }}">-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <input type="text" name="web" value="{{ book.web }}">-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <input type="text" name="price" value="{{ book.price }}">-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <input type="submit" value="Submit">-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
     {% csrf_token  %}
 </form>
 {% endblock content%}

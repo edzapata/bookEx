@@ -153,6 +153,32 @@ def edit_info(request, book_id):
                   })
 
 
+@login_required(login_url=reverse_lazy('login'))
+def exchange(request, book_id):
+    book = Book.objects.get(id=book_id)
+    books = Book.objects.filter(username=request.user)
+    if request.method == 'POST':
+        try:
+            user_id = request.POST['exchange']
+            user_book = Book.objects.get(id=user_id)
+            temp = book.username
+            book.username = user_book.username
+            user_book.username = temp
+        except Exception:
+            pass
+        book.save()
+        user_book.save()
+        return HttpResponseRedirect('/mybooks')
+
+    return render(request,
+                  'bookMng/exchange.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      'book': book,
+                      'books': books,
+                  })
+
+
 class Register(CreateView):
     template_name = 'registration/register.html'
     form_class = UserCreationForm
