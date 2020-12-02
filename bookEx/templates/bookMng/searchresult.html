@@ -2,29 +2,17 @@
 {% load static %}
 
 {% block title %}
-Display Books
+Search Results
 {% endblock title %}
-
-{#{% block sidenav %}#}
-{#  {% for item in item_list %}#}
-{#
-<li>#}
-    {# <a href="{{ item.link }}"> {{ item.item }} </a>#}
-    {#
-</li>#}
-{#  {% endfor %}#}
-{#{% endblock sidenav %}#}
-
 
 {% block content %}
 <div class="container-fluid">
     <div class="container " align="center">
         <div>
-            <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Display Book Page </h1>
+            <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Search Results </h1>
         </div>
     </div>
 
-    {% include 'bookMng/filterbooks.html' %}
 
      <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
             <thead class="thead-dark">
@@ -35,7 +23,7 @@ Display Books
 
             </tr>
             </thead>
-            {% for book in books %}
+            {% for book in object_list %}
                 <tr>
                     <td class="lead">
                         <a href="book_detail/{{ book.id }}" align="">
@@ -45,8 +33,6 @@ Display Books
                     <td class="lead">{{ book.publishdate }}</td>
                     <td class="lead">
                         {{ book.username }}
-                        <input type="button" value="Add to Cart" style="float: right;">
-
                     </td>
                 </tr>
             {% endfor %}
@@ -54,25 +40,5 @@ Display Books
 
 </div>
 
-
-{#<h1 align="center"> Display Book Page </h1>#}
-{#{{ myFilter.form }}#}
-{#<table align="center" border="2" width="500">#}
-{#    {% for book in books %}#}
-{#    <tr>#}
-{#        <td>#}
-{#            <a href="book_detail/{{ book.id }}">#}
-{#                {{book.name}}#}
-{#            </a>#}
-{#        </td>#}
-{#        <td>#}
-{#            {{ book.publishdate }}#}
-{#        </td>#}
-{#        <td>#}
-{#            {{ book.username }}#}
-{#        </td>#}
-{#    </tr>#}
-{#    {% endfor %}#}
-{#</table>#}
 
 {% endblock content %}

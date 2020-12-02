@@ -18,7 +18,7 @@ from django.urls import path
 from django.urls import include
 
 from django.views.generic.base import TemplateView
-from bookMng.views import Register
+from bookMng.views import Register, SearchResult
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +27,5 @@ urlpatterns = [
     path('register', Register.as_view(), name='register'),
     path('', include('django.contrib.auth.urls')),
     path('', include('bookMng.urls')),
+    path('search/', SearchResult.as_view(), name='searchresult'),
 ]

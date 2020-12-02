@@ -53,9 +53,9 @@
             </ul>
 
             {# Search Bar #}
-            <form class="form-inline ml-auto">
+            <form class="form-inline ml-auto" action="{% url 'searchresult' %}" method="get">
                 <div class="md-form my-0">
-                    <input class="form-control" type="text" placeholder="Search" aria-label="Search"
+                    <input class="form-control" name="query" type="text" placeholder="Search" aria-label="Search"
                 </div>
                 <button href="#!" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
@@ -72,8 +72,17 @@
             {% else %}
                 <span class="badge badge-secondary" style="margin-left: 1em; margin-right: 1em;">Not Logged In </span>
             {% endif %}
+             <form action="http://127.0.0.1:8000/shoppingcart">
+    <input type="submit" value="Shopping Cart" />
+</form>
+
         </div>
     </nav>
+
+
+
+
+
 </header>
 
 {# old code that I commented out #}
@@ -114,6 +123,9 @@
     </section>
     <footer id="footer">
         CS 3337 Django Project hi
+        <br> <a href="http://127.0.0.1:8000/return_policy">testing</a>
+
+
     </footer>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
