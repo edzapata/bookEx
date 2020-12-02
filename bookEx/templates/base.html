@@ -38,11 +38,11 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         {% for item in item_list %}
                             <a class="dropdown-item" href="{{ item.link }}"> {{ item.item }} </a>
+
                         {% endfor %}
 
                     </div>
-                </li>
-
+                <li><a class="nav-link" href="{% url 'contact' %}?next=/">Contact</a></li>
                 <li class="nav-item">
                     {% if user.is_authenticated %}
                         <a class="nav-link" href="{% url 'logout' %}?next=/">Logout</a>
@@ -50,6 +50,7 @@
                         <a class="nav-link" href="{% url 'login' %}?next=/">Login</a>
                     {% endif %}
                 </li>
+
             </ul>
 
             {# Search Bar #}
@@ -113,7 +114,7 @@
         {% endblock content %}
     </section>
     <footer id="footer">
-        CS 3337 Django Project 
+        CS 3337 Django Project
     </footer>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
