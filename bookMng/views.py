@@ -8,12 +8,16 @@ from django.http import HttpResponseRedirect
 from .models import Book
 
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 
 from django.contrib.auth.decorators import login_required
 
 from .filters import BookFilter
+
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -74,6 +78,31 @@ def displaybooks(request):
                       'myFilter': myFilter
                   }
                   )
+
+# def search(request):
+#     #         query=self.request.GET.get("query")
+#     #         object_list=Book.objects.filter(
+#     #             Q(name__icontains=query)
+#     #         )
+#     query=request.GET.get("query")
+#     books = Book.objects.filter(
+#         Q(name__icontains=query)
+#     )
+#
+#
+#     myFilter = BookFilter(request.GET, queryset=books)
+#     books = myFilter.qs
+#
+#     for b in books:
+#         b.pic_path = b.picture.url[14:]
+#     return render(request,
+#                   'bookMng/displaybooks.html',
+#                   {
+#                       'item_list': MainMenu.objects.all(),
+#                       'books': books,
+#                       'myFilter': myFilter
+#                   }
+#                   )
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -136,3 +165,15 @@ class Register(CreateView):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(self.success_url)
+
+class SearchResult(ListView):
+    model = Book
+    template_name='bookMng/searchresult.html'
+
+    def get_queryset(self):
+        query=self.request.GET.get("query")
+        object_list=Book.objects.filter(
+            Q(name__icontains=query)
+        )
+        return object_list
+
