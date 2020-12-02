@@ -127,7 +127,13 @@ def book_delete(request, book_id):
                       'item_list': MainMenu.objects.all(),
                   }
                   )
-
+def favorites(request):
+    return render(request,
+                  'bookMng/favorites.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                  }
+                  )
 
 class Register(CreateView):
     template_name = 'registration/register.html'
