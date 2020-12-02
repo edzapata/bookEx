@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    My Books
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="container " align="center">
+        <div>
+            <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Exchange Page </h1>
+        </div>
+    </div>
+    <form action="{% url 'exchange' %}/{{ book.id }}" method="post">
+        {% csrf_token %}
+         <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col"> Book Name</th>
+                    <th scope="col"> Published Date</th>
+                    <th scope="col">Posted By</th>
+                    <th scope="col">Exchange</th>
+                </tr>
+                </thead>
+                {% for book in books %}
+                    <tr>
+                        <td class="lead">
+                            <a href="book_detail/{{ book.id }}" align="">
+                                {{ book.name }}
+                            </a>
+                        </td>
+                        <td class="lead">{{ book.publishdate }}</td>
+                        <td class="lead">
+                            {{ book.username }}
+                        </td>
+                        <td class="lead">
+                            <button type="submit" name="exchange" value="{{ book.id }}">Exchange</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+         </table>
+<!--        <input type="hidden" name="otherUser" value="{{ book.id }}">-->
+    </form>
+
+    <table class="table table-hover mx-auto my-4" id="other-user-table" align="center" border="2" width="800">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Book Name</th>
+                <th scope="col">Published Date</th>
+                <th scope="col">Image</th>
+                <th scope="col">Web</th>
+                <th scope="col">Price</th>
+                <th scope="col">Posted By</th>
+            </tr>
+        </thead>
+        <tr>
+            <td class="lead">{{ book.name }}</td>
+            <td class="lead">{{ book.publishdate }}</td>
+            <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>
+            <td class="lead">{{ book.web }}</td>
+            <td class="lead">{{ book.price }}</td>
+            <td class="lead">{{ book.username }}</td>
+
+        </tr>
+    </table>
+</div>
+
+{% endblock content %}

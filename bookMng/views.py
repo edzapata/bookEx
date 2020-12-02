@@ -14,6 +14,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 
 from .filters import BookFilter
+from .filters import MyBooksFilter
 
 # Create your views here.
 
@@ -80,7 +81,7 @@ def displaybooks(request):
 def mybooks(request):
     books = Book.objects.filter(username=request.user)
 
-    myFilter = BookFilter(request.GET, queryset=books)
+    myFilter = MyBooksFilter(request.GET, queryset=books)
     books = myFilter.qs
 
     return render(request,
@@ -148,6 +149,56 @@ def contact(request):
                       'submitted': submitted
                   }
                   )
+  
+  
+def edit_info(request, book_id):
+    book = Book.objects.get(id=book_id)
+    book.pic_path = book.picture.url[14:]
+
+    if request.method == 'POST':
+        try:
+            book.username = request.user
+            if request.FILES.get('picture') is not None:
+                book.picture = request.FILES.get('picture')
+            book.price = request.POST['price']
+            book.name = request.POST['name']
+            book.web = request.POST['web']
+        except Exception:
+            pass
+        book.save()
+        return HttpResponseRedirect('/mybooks')
+    return render(request,
+                  'bookMng/edit_info.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      'book': book,
+                  })
+
+
+@login_required(login_url=reverse_lazy('login'))
+def exchange(request, book_id):
+    book = Book.objects.get(id=book_id)
+    books = Book.objects.filter(username=request.user)
+    if request.method == 'POST':
+        try:
+            user_id = request.POST['exchange']
+            user_book = Book.objects.get(id=user_id)
+            temp = book.username
+            book.username = user_book.username
+            user_book.username = temp
+        except Exception:
+            pass
+        book.save()
+        user_book.save()
+        return HttpResponseRedirect('/mybooks')
+
+    return render(request,
+                  'bookMng/exchange.html',
+                  {
+                      'item_list': MainMenu.objects.all(),
+                      'book': book,
+                      'books': books,
+                  })
 
 
 class Register(CreateView):
