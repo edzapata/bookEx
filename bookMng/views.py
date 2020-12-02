@@ -122,6 +122,7 @@ def mybooks(request):
                   }
                   )
 
+
 @login_required(login_url=reverse_lazy('login'))
 def shoppingcart(request):
     books = Book.objects.filter(username=request.user)
@@ -138,6 +139,7 @@ def shoppingcart(request):
                   }
                   )
 
+
 @login_required(login_url=reverse_lazy('login'))
 def shopping_delete(request, book_id):
     book = Book.objects.get(id=book_id)
@@ -148,8 +150,6 @@ def shopping_delete(request, book_id):
                       'item_list': MainMenu.objects.all(),
                   }
                   )
-
-
 
 
 @login_required(login_url=reverse_lazy('login'))

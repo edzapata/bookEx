@@ -11,15 +11,11 @@ urlpatterns = [
     path('displaybooks', views.displaybooks, name='displaybooks'),
     path('mybooks', views.mybooks, name='mybooks'),
     path('findbook', views.findbook, name='findbook'),
-<<<<<<< HEAD
     path('contact', views.contact, name='contact'),
     path('edit_info/<int:book_id>', views.edit_info, name='edit_info'),
     path('exchange/<int:book_id>', views.exchange, name='exchange'),
     path('exchange', views.exchange, name='exchange'),
-=======
     path('shoppingcart', views.shoppingcart, name='shoppingcart'),
     path('return_policy', views.return_policy, name='return_policy'),
-
->>>>>>> main
 ]
 
