@@ -130,6 +130,27 @@ def book_delete(request, book_id):
 
 
 @login_required(login_url=reverse_lazy('login'))
+def contact(request):
+    submitted = False
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            book = form.save(commit=False)
+            return HttpResponseRedirect('/contact?submitted=True')
+    else:
+        form = BookForm()
+        if 'submitted' in request.GET:
+            submitted = True
+
+    return render(request,
+                  'bookMng/contact.html',
+                  {
+                      'form': form,
+                      'submitted': submitted
+                  }
+                  )
+  
+  
 def edit_info(request, book_id):
     book = Book.objects.get(id=book_id)
     book.pic_path = book.picture.url[14:]

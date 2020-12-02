@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Contact Info
+{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="container " align="center">
+        <div class="jumbotron">
+            <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Contact Page </h1>
+            <p align="center">Here you can reach us with the following information or send us an email. </p>
+        </div>
+    </div>
+</div>
+ <div class="container-fluid mb-auto">
+            <div class="row card-deck mt-auto mb-5 mx-auto py-4" align="center">
+                <div class="col-sm-6">
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-body" style="background-color: #6A5ACD; color: #FFFFFF;">
+                            <h3 class="card-title">Get In Touch With Us Here</h3>
+                            <p>Eagle Rock Plaza, 2700 Colorado Blvd · In Eagle Rock Plaza</p>
+                            <p class="card-text" >Use the following email to contact us</p>
+                            <p>BookTrafficking@gmail.com</p>
+                        </div>
+                        <div class="row-sm-6">
+                             <div class="card-body" style="background-color: #6A5ACD; color: #FFFFFF;">
+                                <a href="https://twitter.com/bunnydelphine?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                                style="background-color: #6A5ACD; color: #FFFFFF;"><img src="{% static 'twitter.png' %}" height="80em" width="80em"></a>
+                                <a href="https://www.facebook.com/"
+                                style="background-color: #6A5ACD; color: #FFFFFF;"><img src="{% static 'facebook.png' %}" height="80em" width="80em"></a>
+                                 <a href="https://www.twitch.tv/"
+                                style="background-color: #6A5ACD; color: #FFFFFF;"><img src="{% static 'twitch.png' %}" height="80em" width="80em"></a>
+                                 <a href="https://www.snapchat.com/"
+                                style="background-color: #6A5ACD; color: #FFFFFF;"><img src="{% static 'snapchat.png' %}" height="80em" width="80em"></a>
+                                 <a href="https://www.instagram.com/"
+                                style="background-color: #6A5ACD; color: #FFFFFF;"><img src="{% static 'instagram.png' %}" height="80em" width="80em"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6" >
+                    <div class="container" style="background-color: #6A5ACD; color: #FFFFFF;">
+                        <div class="container my-auto py-6" align="center">
+                            {% if submitted %}
+                            <div class="alert alert-success" role="alert">
+                                Post Send!
+                            </div>
+                            {% else %}
+                            <div class="container" align="left">
+                                <form action="" enctype="multipart/form-data" method="post" novalidate >
+                                    <div class="form-group pt-2">
+                                        <input type="text" name="inputBox" placeholder="Name">
+                                    </div>
+                                    <div class="form-group" >
+                                        <input type="text" name="inputBox" placeholder="Email">
+                                    </div>
+                                    <div class="form-group" >
+                                        <textarea type="text" name="inputBox" placeholder="Your Concerns"  rows="4" cols="50"></textarea>
+                                    </div>
+                                    <div class="container" >
+                                        <input class="btn btn-lg btn-secondary my-4" style="background-color: #FFFFFF; color: #6A5ACD;"
+                                               type="submit" value="Send to Us">
+                                    </div>
+                                    {% csrf_token %}
+                                </form>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+ </div>
+{% endblock content %}
