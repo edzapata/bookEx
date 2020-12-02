@@ -179,6 +179,7 @@ def edit_info(request, book_id):
 def exchange(request, book_id):
     book = Book.objects.get(id=book_id)
     books = Book.objects.filter(username=request.user)
+    book.pic_path = book.picture.url[14:]
     if request.method == 'POST':
         try:
             user_id = request.POST['exchange']
