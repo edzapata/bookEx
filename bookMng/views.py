@@ -135,7 +135,7 @@ def contact(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
-            book = form.save(commit=False)
+            email = form.save(commit=False)
             return HttpResponseRedirect('/contact?submitted=True')
     else:
         form = BookForm()
@@ -146,6 +146,7 @@ def contact(request):
                   'bookMng/contact.html',
                   {
                       'form': form,
+                      'item_list': MainMenu.objects.all(),
                       'submitted': submitted
                   }
                   )
