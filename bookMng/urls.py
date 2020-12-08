@@ -17,5 +17,6 @@ urlpatterns = [
     path('exchange', views.exchange, name='exchange'),
     path('shoppingcart', views.shoppingcart, name='shoppingcart'),
     path('return_policy', views.return_policy, name='return_policy'),
+    path('exchange/book_detail/<int:book_id>', views.book_detail, name='book_detail'),
 ]
 
