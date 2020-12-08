@@ -4,6 +4,7 @@
         <div class="form-group">
             {% for field in myFilter.form %}
                 {% render_field field.label %}
+            &nbsp;
                 {% render_field field class+="form-control mr-4 col-2" %}
             {% endfor %}
             <button class="btn btn-dark ml-3" type="submit">Filter</button>
