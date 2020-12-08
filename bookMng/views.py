@@ -272,11 +272,11 @@ class Register(CreateView):
 
 class SearchResult(ListView):
     model = Book
-    template_name='bookMng/searchresult.html'
+    template_name = 'bookMng/searchresult.html'
 
     def get_queryset(self):
-        query=self.request.GET.get("query")
-        object_list=Book.objects.filter(
+        query = self.request.GET.get("query")
+        object_list = Book.objects.filter(
             Q(name__icontains=query)
         )
         return object_list

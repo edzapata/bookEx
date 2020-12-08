@@ -25,32 +25,53 @@ Display Books
     </div>
 
     {% include 'bookMng/filterbooks.html' %}
+        <div class="col card-deck mt-auto mb-5 mx-auto py-4">
+        {% for book in books %}
+            <div class="card" width="18rem">
+                <img class="card-img-top" src="{% static book.pic_path %}" style="width: 100%" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.name }}</h5>
+                    <div>{{ book.price }}</div>
+                    <div>{{ book.username }}</div>
+                </div>
+            </div>
+            {% if forloop.counter == 5 %}
+            </div>
+            <div class="col card-deck mt-auto mb-5 mx-auto py-4">
+            {% endif %}
+        {% endfor %}
+            </div>
 
-     <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col"> Book Name</th>
-                <th scope="col"> Published Date</th>
-                <th scope="col">Posted By</th>
-            </tr>
-            </thead>
-            {% for book in books %}
-                <tr>
-                    <td class="lead">
-                        <a href="book_detail/{{ book.id }}" align="">
-                            {{ book.name }}
-                        </a>
-                    </td>
-                    <td class="lead">{{ book.publishdate }}</td>
-                    <td class="lead">
-                        {{ book.username }}
-                        <input type="button" value="Add to Cart" style="float: right;">
-
-                    </td>
-                </tr>
-            {% endfor %}
-     </table>
-
+<!--     <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">-->
+<!--            <thead class="thead-dark">-->
+<!--            <tr>-->
+<!--                <th scope="col">Image</th>-->
+<!--                <th scope="col">Book Name</th>-->
+<!--                <th scope="col">Published Date</th>-->
+<!--                <th scope="col">Price</th>-->
+<!--                <th scope="col">Posted By</th>-->
+<!--                <th scope="col">Add To Cart</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            {% for book in books %}-->
+<!--                <tr>-->
+<!--                    <td class="lead"><img src="{% static book.pic_path %}" width="40" height="40" alt=""></td>-->
+<!--                    <td class="lead">-->
+<!--                        <a href="book_detail/{{ book.id }}" align="">-->
+<!--                            {{ book.name }}-->
+<!--                        </a>-->
+<!--                    </td>-->
+<!--                    <td class="lead">{{ book.publishdate }}</td>-->
+<!--                    <td class="lead">{{ book.price }}</td>-->
+<!--                    <td class="lead">-->
+<!--                        {{ book.username }}-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                         <input type="button" value="Add to Cart">-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            {% endfor %}-->
+<!--     </table>-->
 </div>
 
 
