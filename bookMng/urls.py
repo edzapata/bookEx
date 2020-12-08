@@ -17,5 +17,7 @@ urlpatterns = [
     path('exchange', views.exchange, name='exchange'),
     path('shoppingcart', views.shoppingcart, name='shoppingcart'),
     path('return_policy', views.return_policy, name='return_policy'),
+
+    path('favorite_book', views.favorite_book, name='favorite_book'),
 ]
 

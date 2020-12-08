@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import MainMenu
 
@@ -18,7 +18,6 @@ from .filters import BookFilter
 from .filters import MyBooksFilter
 
 from django.db.models import Q
-
 
 # Create your views here.
 
@@ -76,7 +75,7 @@ def displaybooks(request):
                   {
                       'item_list': MainMenu.objects.all(),
                       'books': books,
-                      'myFilter': myFilter
+                      'myFilter': myFilter,
                   }
                   )
 
@@ -291,3 +290,18 @@ def return_policy(request):
                   }
                   )
 
+@login_required(login_url=reverse_lazy('login'))
+def favorite_book(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+
+    is_favorite = False
+
+    if book.favorite.filter(id=request.user.id).exists():
+        is_favorite = True
+
+    if book.favorite.filter(book_id=request.user.id).exists():
+        book.favorite.remove(request.user)
+    else:
+        book.favorite.add(request.user)
+
+    return HttpResponseRedirect(book.get_absolute_url())
