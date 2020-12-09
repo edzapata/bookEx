@@ -18,5 +18,9 @@ urlpatterns = [
     path('shoppingcart', views.shoppingcart, name='shoppingcart'),
     path('return_policy', views.return_policy, name='return_policy'),
     path('exchange/book_detail/<int:book_id>', views.book_detail, name='book_detail'),
+    path('shoppingcart', views.shoppingcart, name='shoppingcart'),
+    path('return_policy', views.return_policy, name='return_policy'),
+    path('searchresult', views.search, name='searchresult'),
+    path('user_info', views.user_info, name='user_info')
 ]
 
