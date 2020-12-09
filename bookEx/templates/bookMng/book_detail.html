@@ -27,6 +27,9 @@ Book Detail
                     </div>
                 </div>
             </div>
+            {% if book.user != request.user %}
+            <a href="exchange/{{ book.id }}">Want to Exchange?</a>
+            {% endif %}
         </div>
     </div>
 {% endblock content %}
