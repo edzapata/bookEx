@@ -6,16 +6,6 @@
 Post Book
 {% endblock title %}
 
-{#{% block sidenav %}#}
-{#  {% for item in item_list %}#}
-{#
-<li>#}
-    {# <a href="{{ item.link }}"> {{ item.item }} </a>#}
-    {#
-</li>#}
-{#  {% endfor %}#}
-{#{% endblock sidenav %}#}
-
 {% block content %}
 <div class="container">
     <div class="container " align="center">
@@ -61,24 +51,3 @@ Post Book
         {% endif %}
     </div>
 </div>
-
-
-{#<h1> Post Book </h1>#}
-{#{% if submitted %}#}
-{#<p align="center">#}
-{#    Post Successfully#}
-{#</p>#}
-{#{% else %}#}
-{#<form action="" enctype="multipart/form-data" method="post" novalidate>#}
-{#    <table>#}
-{#        {{ form.as_table }}#}
-{#        <tr>#}
-{#            <td colspan="2">#}
-{#                <input type="submit" value="submit">#}
-{#            </td>#}
-{#        </tr>#}
-{#    </table>#}
-{#    {% csrf_token %}#}
-{#</form>#}
-{#{% endif %}#}
-{% endblock content %}

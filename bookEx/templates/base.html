@@ -62,11 +62,6 @@
                 </div>
                 <button href="#!" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-            {#<form class="form-inline mt-2 mt-md-0">#}
-            {#    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">#}
-            {#    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
-            {#</form>#}
-
 
             {# username place-holder when signed in #}
             {% if user.is_authenticated %}
@@ -75,49 +70,10 @@
             {% else %}
                 <span class="badge badge-secondary" style="margin-left: 1em; margin-right: 1em;">Not Logged In </span>
             {% endif %}
-             <form action="http://127.0.0.1:8000/shoppingcart">
-    <input type="submit" value="Shopping Cart" />
-</form>
-
         </div>
     </nav>
 
-
-
-
-
 </header>
-
-{# old code that I commented out #}
-<div id="">
-{#    <header id="header">#}
-{#        <div id="logo">#}
-{#            <img src="{% static 'logo.jpg' %}" width="50" heigth="100" alt=""/>#}
-{#            <span style="float: right;">#}
-{#                {% if user.is_authenticated %}#}
-{#                     {{ user.username }}#}
-{#                     <a href="{% url 'logout' %}?next=/">Logout</a>#}
-{#                {% else %}#}
-{#                     Not Logged in.#}
-{#                     <a href="{% url 'login' %}?next=/">Login</a>#}
-{#                {% endif %}#}
-{#            </span>#}
-{#        </div>#}
-{#        <div id="topbanner">#}
-{#            <img src="{% static 'topbanner.jpg' %}" width="600" height="100" alt=""/>#}
-{#        </div>#}
-{#    </header>#}
-{#    <aside id="leftsidebar">#}
-{#        <nav id="nav">#}
-{#            <ul>#}
-{#                {% block sidenav %}#}
-{#                <li> Menu 1</li>#}
-{#                <li> Menu 2</li>#}
-{#                <li> Menu 3</li>#}
-{#                {% endblock sidenav %}#}
-{#            </ul>#}
-{#        </nav>#}
-{#    </aside>#}
     {# section id=main #}
     <section id="hello">
         {% block content %}
