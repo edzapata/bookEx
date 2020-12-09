@@ -25,3 +25,17 @@ class Book(models.Model):
         return str(self.id)
 
 
+class User(models.Model):
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    # email = models.CharField(max_length=200)
+    street = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)
+    state = models.CharField(max_length=200)
+    zipcode = models.CharField(max_length=200)
+    username = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.id)
+
+

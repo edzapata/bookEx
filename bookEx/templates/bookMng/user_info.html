@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+User Info
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+
+<h1 align="center" class="display-5 mx-auto my-auto px-5 py-8"> User Info </h1>
+
+<form method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>First Name</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group col-md-6">
+            <label>Last Name</label>
+            {{ form.last_name }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Address</label>
+        {{ form.street }}
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>City</label>
+            {{ form.city }}
+        </div>
+        <div class="form-group col-md-4">
+            <label>State</label>
+            {{ form.state }}
+        </div>
+        <div class="form-group col-md-2">
+            <label>Zip</label>
+            {{ form.zipcode }}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    {% csrf_token %}
+</form>
+</div>
+{% endblock content %}

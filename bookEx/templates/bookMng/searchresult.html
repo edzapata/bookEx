@@ -7,12 +7,31 @@ Search Results
 
 {% block content %}
 <div class="container-fluid">
-    <div class="container " align="center">
+    <div class="container" align="center">
         <div>
             <h1 align="center" class="display-4 mx-auto my-auto px-3 py-2"> Search Results </h1>
         </div>
     </div>
 
+    <div class="container">
+        <div class="row mt-3">
+            {% for book in object_list %}
+                <div class="col-3">
+                    <a href="book_detail/{{ book.id }}" style="color: black; text-decoration: none">
+                    <div class="card">
+                        <img class="card-img-top" src="{% static book.pic_path %}">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ book.name }}</h2>
+                            <p class="card-text">Posted on: {{ book.publishdate }} <br>
+                                Price: {{ book.price }} <br>
+                                Posted By: {{ book.username }} <br>
+                                <a href="book_delete/{{ book.id }}">Delete Book</a> |
+                                <a href="edit_info/{{ book.id }}">Edit Information</a>
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
 
      <table class="table table-hover mx-auto my-4" id="my-books-table" align="center" border="2" width="800">
             <thead class="thead-dark">
@@ -23,7 +42,7 @@ Search Results
 
             </tr>
             </thead>
-            {% for book in object_list %}
+            {% for book in book_list %}
                 <tr>
                     <td class="lead">
                         <a href="book_detail/{{ book.id }}" align="">
@@ -36,8 +55,9 @@ Search Results
                     </td>
                 </tr>
             {% endfor %}
-     </table>
-
+            </table>
+        </div>
+    </div>
 </div>
 
 
