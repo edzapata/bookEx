@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import MainMenu
 
-from .forms import BookForm
+from .forms import BookForm, UserInfoForm
 from django.http import HttpResponseRedirect
 
-from .models import Book
+from .models import Book, User
 
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
@@ -270,16 +270,18 @@ class Register(CreateView):
         return HttpResponseRedirect(self.success_url)
 
 
-class SearchResult(ListView):
-    model = Book
-    template_name='bookMng/searchresult.html'
+def search(request):
+    query = request.GET.get("query")
+    book_list = Book.objects.filter(Q(name__icontains=query))
 
-    def get_queryset(self):
-        query=self.request.GET.get("query")
-        object_list=Book.objects.filter(
-            Q(name__icontains=query)
-        )
-        return object_list
+    return render(request,
+                  'bookMng/searchresult.html',
+                  {
+                        'item_list': MainMenu.objects.all(),
+                        'book_list': book_list
+                  }
+                  )
+
 
 
 @login_required(login_url=reverse_lazy('login'))
@@ -291,3 +293,55 @@ def return_policy(request):
                   }
                   )
 
+@login_required(login_url=reverse_lazy('login'))
+def user_info(request):
+
+    if request.method == 'POST':
+        if User.objects.filter(username=request.user).exists():
+            user = User.objects.get(username=request.user)
+            form = UserInfoForm(request.POST, instance=user)
+            if form.is_valid():
+                userinfo = form.save(commit=False)
+                try:
+                    userinfo.username = request.user
+                except Exception:
+                    print('exception')
+                    pass
+                userinfo.save()
+                return HttpResponseRedirect('/user_info')
+        else:
+            form = UserInfoForm(request.POST)
+            if form.is_valid():
+                userinfo = form.save(commit=False)
+                try:
+                    userinfo.username = request.user
+                except Exception:
+                    pass
+                userinfo.save()
+                return HttpResponseRedirect('/user_info')
+    else:
+        username = request.user
+
+        if User.objects.filter(username=username).exists():
+
+            user = User.objects.get(username=request.user )
+            form = UserInfoForm(initial={
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'street': user.street,
+                'city': user.city,
+                'state': user.state,
+                'zipcode': user.zipcode,
+
+            })
+        else:
+            print('ran2')
+            form = UserInfoForm()
+
+    return render(request,
+                  'bookMng/user_info.html',
+                  {
+                      'form': form,
+                      'item_list': MainMenu.objects.all(),
+                  }
+                  )
