@@ -80,31 +80,6 @@ def displaybooks(request):
                   }
                   )
 
-# def search(request):
-#     #         query=self.request.GET.get("query")
-#     #         object_list=Book.objects.filter(
-#     #             Q(name__icontains=query)
-#     #         )
-#     query=request.GET.get("query")
-#     books = Book.objects.filter(
-#         Q(name__icontains=query)
-#     )
-#
-#
-#     myFilter = BookFilter(request.GET, queryset=books)
-#     books = myFilter.qs
-#
-#     for b in books:
-#         b.pic_path = b.picture.url[14:]
-#     return render(request,
-#                   'bookMng/displaybooks.html',
-#                   {
-#                       'item_list': MainMenu.objects.all(),
-#                       'books': books,
-#                       'myFilter': myFilter
-#                   }
-#                   )
-
 
 @login_required(login_url=reverse_lazy('login'))
 def mybooks(request):
@@ -119,35 +94,6 @@ def mybooks(request):
                       'item_list': MainMenu.objects.all(),
                       'books': books,
                       'myFilter': myFilter
-                  }
-                  )
-
-
-@login_required(login_url=reverse_lazy('login'))
-def shoppingcart(request):
-    books = Book.objects.filter(username=request.user)
-
-    myFilter = MyBooksFilter(request.GET, queryset=books)
-    books = myFilter.qs
-
-    return render(request,
-                  'bookMng/shoppingcart.html',
-                  {
-                      'item_list': MainMenu.objects.all(),
-                      'books': books,
-                      'myFilter': myFilter
-                  }
-                  )
-
-
-@login_required(login_url=reverse_lazy('login'))
-def shopping_delete(request, book_id):
-    book = Book.objects.get(id=book_id)
-    book.delete()
-    return render(request,
-                  'bookMng/shopping_delete.html',
-                  {
-                      'item_list': MainMenu.objects.all(),
                   }
                   )
 
@@ -304,6 +250,7 @@ def return_policy(request):
                       'item_list': MainMenu.objects.all(),
                   }
                   )
+
 
 @login_required(login_url=reverse_lazy('login'))
 def user_info(request):
