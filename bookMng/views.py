@@ -87,7 +87,8 @@ def mybooks(request):
 
     myFilter = MyBooksFilter(request.GET, queryset=books)
     books = myFilter.qs
-
+    for b in books:
+        b.pic_path = b.picture.url[14:]
     return render(request,
                   'bookMng/mybooks.html',
                   {
@@ -185,6 +186,8 @@ def exchange(request, book_id):
     book = Book.objects.get(id=book_id)
     books = Book.objects.filter(username=request.user)
     book.pic_path = book.picture.url[14:]
+    for b in books:
+        b.pic_path = b.picture.url[14:]
     if request.method == 'POST':
         try:
             user_id = request.POST['exchange']
@@ -232,7 +235,8 @@ class SearchResult(ListView):
 def search(request):
     query = request.GET.get("query")
     book_list = Book.objects.filter(Q(name__icontains=query))
-
+    for b in book_list:
+        b.pic_path = b.picture.url[14:]
     return render(request,
                   'bookMng/searchresult.html',
                   {
